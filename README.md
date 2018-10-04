@@ -29,3 +29,8 @@ yarn run test:unit
 ```
 yarn run test:e2e
 ```
+
+### NASA API Key
+```
+3BCuegNDhEw6fPGyHw3fMS8NV5fB4gTB1QZRusZY
+```

@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column is-two-thirds">
+        <p>Fireballs and bolides are astronomical terms for exceptionally bright meteors that are spectacular enough to to be seen over a very wide area</p>
+      </div>
+      <div class="column"></div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld,
-  },
-};
+  name: 'home'
+}
 </script>
