@@ -1,0 +1,4 @@
+.deck-wrapper {
+    height: calc(100vh - #{$navbar-height});
+    position: relative;
+}

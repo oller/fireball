@@ -1,7 +1,6 @@
 $primary: #7943ac;
 
 $link: $primary !default;
-// $link-invert: $primary-invert !default;
 $link-focus-border: $primary !default;
 
 // Navbar styling
@@ -9,5 +8,4 @@ $navbar-item-hover-color: #fff;
 $navbar-item-hover-background-color: hsla(0, 0%, 100%, .1);
 $navbar-item-color: #fff;
 $navbar-item-active-color: #fff;
-// $navbar-item-active-background-color: hsla(0, 0%, 100%, .1);
 $navbar-background-color: transparent;
