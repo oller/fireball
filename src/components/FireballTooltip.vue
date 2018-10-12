@@ -5,7 +5,7 @@
             <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="calendar_today"/>{{ fireball.object.date | moment }}</li>
             <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="location_on"/>{{ fireballLocation }}</li>
             <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="brightness_5"/>{{ fireball.object.energy | formatNumber }} joules</li>
-            <li><base-icon class="m-r-sm is-size-7" icon="whatshot"/>{{ fireball.object['impact-e'] }} tons of TNT</li>
+            <li><base-icon class="m-r-sm is-size-7" icon="whatshot"/>{{ fireball.object['impact-e'] | formatNumber }} tons of TNT</li>
           </ul>
         </div>
     </div>

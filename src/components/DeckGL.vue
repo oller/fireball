@@ -17,7 +17,7 @@ import { ScatterplotLayer } from '@deck.gl/layers'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { scaleSequential } from 'd3-scale'
-import { interpolateYlOrRd } from 'd3-scale-chromatic'
+import { interpolateRdPu } from 'd3-scale-chromatic'
 import { rgbStringToArray } from '@/helpers/utils.js'
 import FireballService from '@/services/FireballService'
 import FireballTooltip from '@/components/FireballTooltip'
@@ -96,12 +96,12 @@ export default {
             pickable: true,
             autoHighlight: true,
             highlightColor: [35, 214, 187, 128], // @aqua from atp color pallete
-            opacity: 0.6,
-            radiusScale: 10,
+            opacity: 0.3,
+            radiusScale: 50000,
             radiusMinPixels: 2,
-            radiusMaxPixels: 100,
+            // radiusMaxPixels: 100,
             getPosition: d => [d.lon, d.lat],
-            getRadius: d => Number(d.energy),
+            getRadius: d => Math.log(Number(d.energy)),
             getColor: d => rgbStringToArray(this.colorScale(Number(d.energy))),
             onHover: hoveredObject => {
               this.fireballHovered = hoveredObject
@@ -111,14 +111,17 @@ export default {
       })
     },
     updateColorScale() {
+      const colorScale = interpolateRdPu
       const energyDomain = FireballService.getFireballEnergyRange(
         this.fireballs
       )
-      this.colorScale = scaleSequential(interpolateYlOrRd).domain(energyDomain)
+      this.colorScale = scaleSequential(colorScale).domain(energyDomain)
     }
   },
   mounted() {
     this.initDeckGL()
+    // this.updateColorScale()
+    // this.updateDeckLayer()
   }
 }
 </script>
