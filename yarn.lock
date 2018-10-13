@@ -1357,6 +1357,10 @@
   version "4.14.87"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.87.tgz#55f92183b048c2c64402afe472f8333f4e319a6b"
 
+"@types/lru-cache@^4.1.0":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-4.1.1.tgz#b2d87a5e3df8d4b18ca426c5105cd701c2306d40"
+
 "@types/minimatch@3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -2141,6 +2145,14 @@ aws-sign2@~0.7.0:
 aws4@^1.6.0, aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
+
+axios-extensions@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/axios-extensions/-/axios-extensions-3.0.3.tgz#b94444666885c89f9e982ed16cc48b743a12b82c"
+  dependencies:
+    "@types/lru-cache" "^4.1.0"
+    lru-cache "^4.1.1"
+    tslib "^1.9.0"
 
 axios@^0.18.0:
   version "0.18.0"
