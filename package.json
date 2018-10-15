@@ -22,6 +22,7 @@
     "moment": "^2.22.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vue-slider-component": "^2.7.11",
     "vue-toasted": "^1.1.25"
   },
   "devDependencies": {

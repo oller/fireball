@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-if="fireballs" class="deck-wrapper">
-            <!-- <div class="deck-toolbar p-md">
-              <base-button icon="date_range" class="is-outlined is-white"></base-button>
-            </div> -->
+            <div class="deck-toolbar m-lg">
+              <fireball-slider :dateRange="fireballYearRange" @updatedRange="getDataForDateRange"></fireball-slider>
+            </div>
             <div id="map" class="fill-wrapper"></div>
             <canvas id="deck-canvas" class="fill-wrapper"></canvas>
         </div>
@@ -16,11 +16,13 @@ import { Deck } from '@deck.gl/core'
 import { ScatterplotLayer } from '@deck.gl/layers'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import debounce from 'lodash/debounce'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdPu } from 'd3-scale-chromatic'
 import { rgbStringToArray } from '@/helpers/utils.js'
 import FireballService from '@/services/FireballService'
 import FireballTooltip from '@/components/FireballTooltip'
+import FireballSlider from '@/components/FireballSlider'
 
 // Init Map and Deck container Objects to be referenced across methods
 let mapObject = null
@@ -28,10 +30,12 @@ let deckObject = null
 
 export default {
   components: {
-    FireballTooltip
+    FireballTooltip,
+    FireballSlider
   },
   props: {
-    fireballs: Array
+    fireballs: Array,
+    fireballYearRange: Array
   },
   data() {
     return {
@@ -116,12 +120,20 @@ export default {
         this.fireballs
       )
       this.colorScale = scaleSequential(colorScale).domain(energyDomain)
-    }
+    },
+    getDataForDateRange: debounce(function(range) {
+      FireballService.fetchFireballsForYearRange(range)
+        .then(response => {
+          this.fireballs = FireballService.parseResponse(response.data)
+          this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
+        })
+        .catch(error => {
+          this.$toasted.show(error)
+        })
+    }, 2000)
   },
   mounted() {
     this.initDeckGL()
-    // this.updateColorScale()
-    // this.updateDeckLayer()
   }
 }
 </script>
@@ -130,7 +142,7 @@ export default {
 .deck-wrapper {
   background: #1b1b1d;
 
-  > .fill-wrapper {
+  .fill-wrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -144,5 +156,6 @@ export default {
   top: 0;
   right: 0;
   z-index: 1;
+  width: 200px;
 }
 </style>

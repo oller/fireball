@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DeckGL :fireballs="fireballs"/>
+    <DeckGL :fireballs="fireballs" :fireballYearRange="fireballYearRange"/>
   </div>
 </template>
 
@@ -14,13 +14,15 @@ export default {
   },
   data() {
     return {
-      fireballs: []
+      fireballs: [],
+      fireballYearRange: []
     }
   },
   created() {
-    FireballService.getFireballs()
+    FireballService.fetchFireballs()
       .then(response => {
         this.fireballs = FireballService.parseResponse(response.data)
+        this.fireballYearRange = FireballService.getYearRange(this.fireballs)
         this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
       })
       .catch(error => {
