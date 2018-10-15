@@ -21,7 +21,7 @@
             active-class="is-active"
             exact
             :to="{ name: routes.name }">{{routes.text}}</router-link>
-            <a href="https://github.com/oller/" class="navbar-item">
+            <a href="https://github.com/oller/fireball" class="navbar-item">
               <img src="../assets/images/github.svg" alt="Github Logo" width="20" height="20">
             </a>
           </div>
@@ -43,10 +43,6 @@ export default {
     return {
       responsiveNavOpen: false,
       links: [
-        {
-          text: 'Home',
-          name: 'home'
-        },
         {
           text: 'Map',
           name: 'map'

@@ -7,7 +7,7 @@
         </div>
 
         <!-- Hero content: will be in the middle -->
-        <div v-if="this.$route.name === 'home'" class="hero-body">
+        <div v-if="this.$route.name === 'about'" class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="title has-text-white">
                     {{ title }}
