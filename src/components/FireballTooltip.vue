@@ -1,14 +1,30 @@
 <template>
-    <div v-if="fireball.object" class="tooltip message is-small has-background-grey-dark" :style="{top: fireball.y + 'px', left: fireball.x + 'px'}">
-        <div class="message-body has-text-white">
-          <ul>
-            <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="calendar_today"/>{{ fireball.object.date | moment }}</li>
-            <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="location_on"/>{{ fireballLocation }}</li>
-            <li class="m-b-xs"><base-icon class="m-r-sm is-size-7" icon="brightness_5"/>{{ fireball.object.energy | formatNumber }} joules</li>
-            <li><base-icon class="m-r-sm is-size-7" icon="whatshot"/>{{ fireball.object['impact-e'] | formatNumber }} tons of TNT</li>
-          </ul>
-        </div>
+  <div
+    v-if="fireball.object"
+    class="tooltip message is-small has-background-grey-dark"
+    :style="{top: fireball.y + 'px', left: fireball.x + 'px'}"
+  >
+    <div class="message-body has-text-white">
+      <ul>
+        <li class="m-b-xs">
+          <base-icon class="m-r-sm is-size-7" icon="calendar_today"/>
+          {{ fireball.object.date | moment }}
+        </li>
+        <li class="m-b-xs">
+          <base-icon class="m-r-sm is-size-7" icon="location_on"/>
+          {{ fireballLocation }}
+        </li>
+        <li class="m-b-xs">
+          <base-icon class="m-r-sm is-size-7" icon="brightness_5"/>
+          {{ fireball.object.energy | formatNumber }} joules
+        </li>
+        <li>
+          <base-icon class="m-r-sm is-size-7" icon="whatshot"/>
+          {{ fireball.object['impact-e'] | formatNumber }} tons of TNT
+        </li>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script>

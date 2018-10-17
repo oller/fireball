@@ -1,14 +1,15 @@
 <template>
-    <div>
-        <vue-slider ref="slider"
-        v-if="dateRange.length"
-        v-model="selectedDateRange"
-        v-bind="dateSliderOptions"
-        :min="dateRange[0]"
-        :max="dateRange[1]"
-        @callback="callback">
-        </vue-slider>
-    </div>
+  <div>
+    <vue-slider
+      ref="slider"
+      v-if="dateRange.length"
+      v-model="selectedDateRange"
+      v-bind="dateSliderOptions"
+      :min="dateRange[0]"
+      :max="dateRange[1]"
+      @callback="callback"
+    ></vue-slider>
+  </div>
 </template>
 
 <script>

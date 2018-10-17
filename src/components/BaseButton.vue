@@ -1,8 +1,8 @@
 <template>
-    <button class="button">
-        <base-icon v-if="icon" :icon="icon" />
-        <slot/>
-    </button>
+  <button class="button">
+    <base-icon v-if="icon" :icon="icon"/>
+    <slot/>
+  </button>
 </template>
 
 <script>

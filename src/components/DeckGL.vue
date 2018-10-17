@@ -2,7 +2,7 @@
   <div>
     <div class="deck-wrapper">
       <div v-if="loading" class="fill-wrapper spinner-wrapper">
-        <base-spinner :options="spinnerOptions" />
+        <base-spinner :options="spinnerOptions"/>
       </div>
       <div class="deck-toolbar m-lg">
         <fireball-slider :dateRange="fireballYearRange"></fireball-slider>
@@ -10,17 +10,17 @@
       <div class="deck-info m-md">
         <div v-show="showInfo" class="tooltip message is-small has-background-grey-dark">
           <div class="message-body has-text-white">
-            <p> info</p>
+            <p>info</p>
           </div>
         </div>
         <span class="has-text-white" @mouseover="showInfo = true" @mouseout="showInfo = false">
-          <base-icon icon="info_outline" />
+          <base-icon icon="info_outline"/>
         </span>
       </div>
       <div id="map" class="fill-wrapper"></div>
       <canvas id="deck-canvas" class="fill-wrapper"></canvas>
     </div>
-    <fireball-tooltip :fireball="fireballHovered" />
+    <fireball-tooltip :fireball="fireballHovered"/>
   </div>
 </template>
 

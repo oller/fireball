@@ -1,23 +1,18 @@
 <template>
-    <section class="hero has-bg-image has-background-dark is-large">
-        <!-- Hero head: will stick at the top -->
-        <div class="hero-head">
-            <navigation @toggle-responsive-nav="onNavDimensionChange"></navigation>
-        </div>
-
-        <!-- Hero content: will be in the middle -->
-        <div v-if="this.$route.name === 'about'" class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title has-text-white">
-                    {{ title }}
-                </h1>
-                <h2 class="subtitle has-text-white">
-                    {{ subtitle}}
-                </h2>
-            </div>
-        </div>
-        <canvas class="starfield" ref="starfield"></canvas>
-    </section>
+  <section class="hero has-bg-image has-background-dark is-large">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+      <navigation @toggle-responsive-nav="onNavDimensionChange"></navigation>
+    </div>
+    <!-- Hero content: will be in the middle -->
+    <div v-if="this.$route.name === 'about'" class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title has-text-white">{{ title }}</h1>
+        <h2 class="subtitle has-text-white">{{ subtitle}}</h2>
+      </div>
+    </div>
+    <canvas class="starfield" ref="starfield"></canvas>
+  </section>
 </template>
 
 <script>

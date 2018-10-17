@@ -1,5 +1,5 @@
 <template>
-    <i class="material-icons" v-text="icon"/>
+  <i class="material-icons" v-text="icon"/>
 </template>
 
 <script>
