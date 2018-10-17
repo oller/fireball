@@ -8,7 +8,9 @@ module.exports = {
         "plugin:prettier/recommended",
         "@vue/prettier"
     ],
-    "rules": {},
+    "rules": {
+        "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    },
     "parserOptions": {
         "parser": "babel-eslint"
     }
