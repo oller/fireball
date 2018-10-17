@@ -1,11 +1,13 @@
 <template>
   <div>
-    <DeckGL :fireballs="fireballs" :fireballYearRange="fireballYearRange"/>
+    <DeckGL :fireballs="fireballs" :loading="loading" :fireballYearRange="fireballYearRange" />
   </div>
 </template>
 
 <script>
+import EventBus from '@/services/EventBus'
 import FireballService from '@/services/FireballService.js'
+
 import DeckGL from '@/components/DeckGL.vue'
 
 export default {
@@ -15,19 +17,34 @@ export default {
   data() {
     return {
       fireballs: [],
-      fireballYearRange: []
+      fireballYearRange: [],
+      loading: false
+    }
+  },
+  methods: {
+    fetchFireballs() {
+      this.loading = true
+      FireballService.fetchFireballs()
+        .then(response => {
+          this.fireballs = FireballService.parseResponse(response.data)
+          this.fireballYearRange = FireballService.getYearRange(this.fireballs)
+          this.loading = false
+          this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
+        })
+        .catch(error => {
+          this.$toasted.show(error)
+        })
+    },
+    getDataForDateRange(range) {
+      this.fireballs = FireballService.getFireballsForYearRange(range)
     }
   },
   created() {
-    FireballService.fetchFireballs()
-      .then(response => {
-        this.fireballs = FireballService.parseResponse(response.data)
-        this.fireballYearRange = FireballService.getYearRange(this.fireballs)
-        this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
-      })
-      .catch(error => {
-        this.$toasted.show(error)
-      })
+    this.fetchFireballs()
+  },
+  mounted() {
+    // Listen for updateRange event fired from slider
+    EventBus.$on('updated-range', this.getDataForDateRange)
   }
 }
 </script>

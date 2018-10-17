@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import EventBus from '@/services/EventBus'
 import vueSlider from 'vue-slider-component'
 
 export default {
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     callback() {
-      this.$emit('updatedRange', this.selectedDateRange)
+      EventBus.$emit('updated-range', this.selectedDateRange)
     }
   },
   data() {
@@ -41,21 +42,16 @@ export default {
       dateSliderOptions: {
         tooltipDir: 'bottom',
         bgStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: '#333',
           boxShadow: 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)'
         },
-        sliderStyle: [
-          {
-            backgroundColor: '#333'
-          },
-          {
-            backgroundColor: '#444'
-          }
-        ],
+        sliderStyle: {
+          backgroundColor: '#444'
+        },
         tooltipStyle: [
           {
-            backgroundColor: '#333',
-            borderColor: '#333'
+            backgroundColor: '#444',
+            borderColor: '#444'
           },
           {
             backgroundColor: '#444',
@@ -63,7 +59,8 @@ export default {
           }
         ],
         processStyle: {
-          backgroundImage: '-webkit-linear-gradient(left, #333, #444)'
+          backgroundColor: '#444'
+          // backgroundImage: '-webkit-linear-gradient(left, #222, #222)'
         }
       }
     }

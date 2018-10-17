@@ -5,6 +5,8 @@ import zipObject from 'lodash/zipObject'
 import minBy from 'lodash/minBy'
 import maxBy from 'lodash/maxBy'
 
+var allFireballs = []
+
 const apiClient = axios.create({
   baseURL: 'https://ssd-api.jpl.nasa.gov/fireball.api?req-loc=true',
   //   baseURL: 'https://data.nasa.gov/resource/mc52-syum.json',
@@ -32,7 +34,7 @@ const fetchFireballsForYearRange = yearRange => {
 const parseResponse = response => {
   // Apply field labels to API response data into workable JSON
   // See formatting at https://ssd-api.jpl.nasa.gov/doc/fireball.html
-  return response.data.map(fireball => {
+  const parsedFireballs = response.data.map(fireball => {
     const updatedFireball = zipObject(response.fields, fireball)
     updatedFireball.lat =
       updatedFireball['lat-dir'] === 'N'
@@ -44,19 +46,27 @@ const parseResponse = response => {
         : -Number(updatedFireball.lon)
     return updatedFireball
   })
+  // Cached all fireballs for later local date filtering
+  allFireballs = parsedFireballs
+  // Return parsed
+  return parsedFireballs
+}
+
+const getFireballsForYearRange = range => {
+  const startDate = moment(`01/01/${range[0]}`, 'DD/MM/YYYY')
+  const endDate = moment(`31/12/${range[1]}`, 'DD/MM/YYYY')
+  return allFireballs.filter(fireball => {
+    const compareDate = moment(fireball.date)
+    if (compareDate.isBetween(startDate, endDate)) {
+      return fireball
+    }
+  })
 }
 
 const getFireballEnergyRange = parsedResponse => {
   return [
     Number(minBy(parsedResponse, 'energy')['energy']),
     Number(maxBy(parsedResponse, 'energy')['energy'])
-  ]
-}
-
-const getFireballImpactRange = parsedResponse => {
-  return [
-    Number(minBy(parsedResponse, 'impact-e')['impact-e']),
-    Number(maxBy(parsedResponse, 'impact-e')['impact-e'])
   ]
 }
 
@@ -72,7 +82,7 @@ export default {
   fetchFireballs,
   fetchFireballsForYearRange,
   parseResponse,
+  getFireballsForYearRange,
   getFireballEnergyRange,
-  getFireballImpactRange,
   getYearRange
 }
