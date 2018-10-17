@@ -1,14 +1,27 @@
 <template>
-    <div>
-        <div v-if="fireballs" class="deck-wrapper">
-            <div class="deck-toolbar m-lg">
-              <fireball-slider :dateRange="fireballYearRange" @updatedRange="getDataForDateRange"></fireball-slider>
-            </div>
-            <div id="map" class="fill-wrapper"></div>
-            <canvas id="deck-canvas" class="fill-wrapper"></canvas>
+  <div>
+    <div class="deck-wrapper">
+      <div v-if="loading" class="fill-wrapper spinner-wrapper">
+        <base-spinner :options="spinnerOptions" />
+      </div>
+      <div class="deck-toolbar m-lg">
+        <fireball-slider :dateRange="fireballYearRange"></fireball-slider>
+      </div>
+      <div class="deck-info m-md">
+        <div v-show="showInfo" class="tooltip message is-small has-background-grey-dark">
+          <div class="message-body has-text-white">
+            <p> info</p>
+          </div>
         </div>
-        <fireball-tooltip :fireball="fireballHovered"/>
+        <span class="has-text-white" @mouseover="showInfo = true" @mouseout="showInfo = false">
+          <base-icon icon="info_outline" />
+        </span>
+      </div>
+      <div id="map" class="fill-wrapper"></div>
+      <canvas id="deck-canvas" class="fill-wrapper"></canvas>
     </div>
+    <fireball-tooltip :fireball="fireballHovered" />
+  </div>
 </template>
 
 <script>
@@ -16,7 +29,6 @@ import { Deck } from '@deck.gl/core'
 import { ScatterplotLayer } from '@deck.gl/layers'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import debounce from 'lodash/debounce'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdPu } from 'd3-scale-chromatic'
 import { rgbStringToArray } from '@/helpers/utils.js'
@@ -35,18 +47,24 @@ export default {
   },
   props: {
     fireballs: Array,
-    fireballYearRange: Array
+    fireballYearRange: Array,
+    loading: Boolean
   },
   data() {
     return {
       colorScale: null,
-      fireballHovered: false
+      fireballHovered: false,
+      showInfo: false,
+      spinnerOptions: {
+        size: 100,
+        color: '#333',
+        depth: 5
+      }
     }
   },
   watch: {
     fireballs() {
       // Watch for changes to fireballs prop populated by parent
-      // Trigger redraw of layer when present
       this.updateColorScale()
       this.updateDeckLayer()
     }
@@ -99,7 +117,7 @@ export default {
             data: this.fireballs,
             pickable: true,
             autoHighlight: true,
-            highlightColor: [35, 214, 187, 128], // @aqua from atp color pallete
+            highlightColor: [35, 214, 187, 128],
             opacity: 0.3,
             radiusScale: 50000,
             radiusMinPixels: 2,
@@ -109,6 +127,9 @@ export default {
             getColor: d => rgbStringToArray(this.colorScale(Number(d.energy))),
             onHover: hoveredObject => {
               this.fireballHovered = hoveredObject
+            },
+            transitions: {
+              getColor: 500
             }
           })
         ]
@@ -120,17 +141,7 @@ export default {
         this.fireballs
       )
       this.colorScale = scaleSequential(colorScale).domain(energyDomain)
-    },
-    getDataForDateRange: debounce(function(range) {
-      FireballService.fetchFireballsForYearRange(range)
-        .then(response => {
-          this.fireballs = FireballService.parseResponse(response.data)
-          this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
-        })
-        .catch(error => {
-          this.$toasted.show(error)
-        })
-    }, 2000)
+    }
   },
   mounted() {
     this.initDeckGL()
@@ -139,16 +150,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.deck-wrapper {
-  background: #1b1b1d;
+@import '@/styles/variables.scss';
 
-  .fill-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+.deck-wrapper {
+  height: calc(100vh - #{$navbar-height});
+  position: relative;
+  background: #1b1b1d;
+}
+
+.fill-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .deck-toolbar {
@@ -157,5 +172,19 @@ export default {
   right: 0;
   z-index: 1;
   width: 200px;
+}
+
+.deck-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.spinner-wrapper {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

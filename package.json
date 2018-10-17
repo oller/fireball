@@ -23,6 +23,7 @@
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-slider-component": "^2.7.11",
+    "vue-spinner-component": "^1.0.5",
     "vue-toasted": "^1.1.25"
   },
   "devDependencies": {
