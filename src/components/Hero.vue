@@ -1,6 +1,5 @@
 <template>
-    <section class="hero has-bg-image has-background-dark is-large"
-    :class="{ 'm-b-xl': this.$route.name !== 'map'}">
+    <section class="hero has-bg-image has-background-dark is-large">
         <!-- Hero head: will stick at the top -->
         <div class="hero-head">
             <navigation @toggle-responsive-nav="onNavDimensionChange"></navigation>

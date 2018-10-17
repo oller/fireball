@@ -5,7 +5,7 @@
           <router-link class="navbar-item" :to="`/`">
             <img alt="Fireball logo" src="../assets/images/fireball.svg" width="20" height="20">
           </router-link>
-          <span class="navbar-burger burger"
+          <span class="navbar-burger burger has-text-white"
           @click="toggleResponsiveNav"
           :class="{ 'is-active': responsiveNavOpen }">
             <span></span>

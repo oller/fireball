@@ -1,4 +1,5 @@
 <template>
+<div class="section">
   <div class="container">
     <div class="columns">
       <div class="column is-one-third">
@@ -11,4 +12,5 @@
       </div>
     </div>
   </div>
+</div>
 </template>
