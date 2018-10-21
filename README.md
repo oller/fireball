@@ -1,5 +1,16 @@
 # fireball
 
+## Prerequisites
+
+Fireball uses the package manager [Yarn](https://yarnpkg.com/en/) and [node](https://nodejs.org).
+
+On a mac you can install them both using homebrew:
+
+```
+brew install node
+brew install yarn
+```
+
 ## Project setup
 
 ```
