@@ -204,8 +204,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variables.scss';
-
 .deck-wrapper {
   height: calc(100vh - #{$navbar-height});
   position: relative;

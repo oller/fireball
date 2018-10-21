@@ -2,7 +2,7 @@
 
 @import './variables.scss'; //Overwrite bulma vars with defined values
 
-@import "~bulma/sass/utilities/_all";
+@import "~bulma/sass/utilities/_all"; // Bulma vars and mixins etc.
 
 @import './overrides.scss'; // Further bulma overrides but remapping existing bulma vars
 
