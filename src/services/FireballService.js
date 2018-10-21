@@ -63,10 +63,10 @@ const getFireballsForYearRange = range => {
   })
 }
 
-const getFireballEnergyRange = parsedResponse => {
+const getFireballMetricRange = (parsedResponse, metric) => {
   return [
-    Number(minBy(parsedResponse, 'energy')['energy']),
-    Number(maxBy(parsedResponse, 'energy')['energy'])
+    Number(minBy(parsedResponse, metric)[metric]),
+    Number(maxBy(parsedResponse, metric)[metric])
   ]
 }
 
@@ -83,6 +83,6 @@ export default {
   fetchFireballsForYearRange,
   parseResponse,
   getFireballsForYearRange,
-  getFireballEnergyRange,
+  getFireballMetricRange,
   getYearRange
 }

@@ -1,6 +1,7 @@
-$primary: #7943ac;
+$primary: #e761af;
 
 $link: $primary !default;
+$link-hover: darken($primary, 10%);
 $link-focus-border: $primary !default;
 
 // Navbar styling

@@ -4,19 +4,16 @@
       <div v-if="loading" class="fill-wrapper spinner-wrapper">
         <base-spinner :options="spinnerOptions"/>
       </div>
-      <div class="deck-toolbar m-lg">
-        <fireball-slider :dateRange="fireballYearRange"></fireball-slider>
-      </div>
-      <div class="deck-info m-md">
-        <div v-show="showInfo" class="tooltip message is-small has-background-grey-dark">
-          <div class="message-body has-text-white">
-            <p>info</p>
-          </div>
-        </div>
-        <span class="has-text-white" @mouseover="showInfo = true" @mouseout="showInfo = false">
-          <base-icon icon="info_outline"/>
-        </span>
-      </div>
+      <fireball-drawer
+        :fireballYearRange="fireballYearRange"
+        :fireballs="fireballs"
+        :metrics="metrics"
+        :metricToPlot="metricToPlot"
+        :scales="scales"
+        :scaleToPlot="scaleToPlot"
+        @metric-updated="onMetricUpdated"
+        @scale-updated="onScaleUpdated"
+      />
       <div id="map" class="fill-wrapper"></div>
       <canvas id="deck-canvas" class="fill-wrapper"></canvas>
     </div>
@@ -34,7 +31,7 @@ import { interpolateRdPu } from 'd3-scale-chromatic'
 import { rgbStringToArray } from '@/helpers/utils.js'
 import FireballService from '@/services/FireballService'
 import FireballTooltip from '@/components/FireballTooltip'
-import FireballSlider from '@/components/FireballSlider'
+import FireballDrawer from '@/components/FireballDrawer'
 
 // Init Map and Deck container Objects to be referenced across methods
 let mapObject = null
@@ -43,7 +40,7 @@ let deckObject = null
 export default {
   components: {
     FireballTooltip,
-    FireballSlider
+    FireballDrawer
   },
   props: {
     fireballs: Array,
@@ -54,7 +51,30 @@ export default {
     return {
       colorScale: null,
       fireballHovered: false,
-      showInfo: false,
+      metricToPlot: 'energy',
+      metrics: [
+        {
+          id: 'energy',
+          icon: 'brightness_5',
+          label: 'Radiated'
+        },
+        {
+          id: 'impact-e',
+          icon: 'whatshot',
+          label: 'Impact'
+        }
+      ],
+      scaleToPlot: 'log',
+      scales: [
+        {
+          id: 'log',
+          label: 'Logarithmic'
+        },
+        {
+          id: 'linear',
+          label: 'Linear'
+        }
+      ],
       spinnerOptions: {
         size: 100,
         color: '#333',
@@ -65,8 +85,13 @@ export default {
   watch: {
     fireballs() {
       // Watch for changes to fireballs prop populated by parent
-      this.updateColorScale()
-      this.updateDeckLayer()
+      this.updateChart()
+    },
+    metricToPlot() {
+      this.updateChart()
+    },
+    scaleToPlot() {
+      this.updateChart()
     }
   },
   methods: {
@@ -119,28 +144,57 @@ export default {
             autoHighlight: true,
             highlightColor: [35, 214, 187, 128],
             opacity: 0.3,
-            radiusScale: 50000,
             radiusMinPixels: 2,
-            // radiusMaxPixels: 100,
             getPosition: d => [d.lon, d.lat],
-            getRadius: d => Math.log(Number(d.energy)),
-            getColor: d => rgbStringToArray(this.colorScale(Number(d.energy))),
+            getRadius: d => this.getMetricForScale(d),
+            getColor: d =>
+              rgbStringToArray(this.colorScale(Number(d[this.metricToPlot]))),
             onHover: hoveredObject => {
               this.fireballHovered = hoveredObject
             },
+            onClick: clickedObject => console.log(clickedObject),
             transitions: {
-              getColor: 500
+              getColor: 200,
+              getRadius: 200
+            },
+            updateTriggers: {
+              getRadius: [this.metricToPlot, this.scaleToPlot],
+              getColor: [this.metricToPlot, this.scaleToPlot]
             }
           })
         ]
       })
     },
+    getMetricForScale(d) {
+      // We also need to set the radiusScale based on scale being used
+      let scaledMetricValue
+      let radiusScale
+      if (this.scaleToPlot === 'log') {
+        radiusScale = 50000
+        scaledMetricValue = Math.log(Number(d[this.metricToPlot]))
+      } else if (this.scaleToPlot === 'linear') {
+        radiusScale = 100
+        scaledMetricValue = Number(d[this.metricToPlot])
+      }
+      return scaledMetricValue * radiusScale
+    },
     updateColorScale() {
       const colorScale = interpolateRdPu
-      const energyDomain = FireballService.getFireballEnergyRange(
-        this.fireballs
+      const metricDomain = FireballService.getFireballMetricRange(
+        this.fireballs,
+        this.metricToPlot
       )
-      this.colorScale = scaleSequential(colorScale).domain(energyDomain)
+      this.colorScale = scaleSequential(colorScale).domain(metricDomain)
+    },
+    updateChart() {
+      this.updateColorScale()
+      this.updateDeckLayer()
+    },
+    onMetricUpdated(metric) {
+      this.metricToPlot = metric
+    },
+    onScaleUpdated(scale) {
+      this.scaleToPlot = scale
     }
   },
   mounted() {
@@ -166,23 +220,8 @@ export default {
   height: 100%;
 }
 
-.deck-toolbar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  width: 200px;
-}
-
-.deck-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
-
 .spinner-wrapper {
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -10,9 +10,9 @@
           <base-icon class="m-r-sm is-size-7" icon="calendar_today"/>
           {{ fireball.object.date | moment }}
         </li>
-        <li class="m-b-xs">
-          <base-icon class="m-r-sm is-size-7" icon="location_on"/>
-          {{ fireballLocation }}
+        <li v-if="fireball.object.alt" class="m-b-xs">
+          <base-icon class="m-r-sm is-size-7" icon="arrow_upward"/>
+          {{ fireball.object.alt }} km
         </li>
         <li class="m-b-xs">
           <base-icon class="m-r-sm is-size-7" icon="brightness_5"/>
@@ -32,12 +32,6 @@ import moment from 'moment'
 export default {
   props: {
     fireball: [Object, Boolean] // Deck returns either object on mouseenter or boolean on mouseleave
-  },
-  computed: {
-    fireballLocation() {
-      return `${this.fireball.object.lon}${this.fireball.object['lon-dir']},
-        ${this.fireball.object.lat}${this.fireball.object['lat-dir']}`
-    }
   },
   filters: {
     moment(date) {

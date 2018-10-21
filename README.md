@@ -35,3 +35,9 @@ yarn run test:unit
 ```
 yarn run test:e2e
 ```
+
+## Todo
+
+- [ ] Reinit slider on callback not setTimeout
+- [ ] Unit Tests
+- [ ] E2E Tests
