@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Hero title="Everyone loves a good bolide" subtitle="Let's find some"></Hero>
+    <hero title="Everyone loves a good bolide" subtitle="Let's find some"></hero>
     <router-view/>
     <Footer></Footer>
+    <portal-target name="modal"></portal-target>
   </div>
 </template>
 

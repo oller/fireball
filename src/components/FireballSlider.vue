@@ -21,15 +21,22 @@ export default {
     vueSlider
   },
   props: {
-    dateRange: {
-      type: Array
-    }
+    dateRange: Array,
+    isVisible: Boolean
   },
   watch: {
     // We've mapped a prop to a data property, as we shouldn't mutate a prop.
     // Data only instanced initially so we need to watch and update data attribute
     dateRange(newValue) {
       this.selectedDateRange = newValue
+    },
+    isVisible() {
+      setTimeout(
+        function() {
+          this.$refs.slider.refresh()
+        }.bind(this),
+        this.refreshDelay
+      )
     }
   },
   methods: {
@@ -39,6 +46,7 @@ export default {
   },
   data() {
     return {
+      refreshDelay: 500,
       selectedDateRange: this.dateRange,
       dateSliderOptions: {
         tooltipDir: 'bottom',
