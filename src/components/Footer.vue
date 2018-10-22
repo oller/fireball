@@ -1,7 +1,10 @@
 <template>
   <footer class="footer" :class="{ 'm-t-xl': this.$route.name !== 'map'}">
     <div class="content has-text-centered is-size-7">
-      <p>Some footer copy</p>
+      <p>
+        Built by
+        <a href="https://www.davidollerhead.com/" target="new">David Ollerhead</a>
+      </p>
     </div>
   </footer>
 </template>
