@@ -29,6 +29,12 @@ yarn run serve
 yarn run build
 ```
 
+### Compiles production and deploys
+
+```
+yarn run deploy
+```
+
 ### Lints and fixes files
 
 ```

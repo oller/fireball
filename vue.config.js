@@ -5,7 +5,7 @@ const path = require('path')
 
 module.exports = {
   // Relative baseUrl on prod, Absolute for Dev
-  baseUrl: process.env.NODE_ENV === 'production' ? './' : '/',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/fireball/' : '/',
   // Auto injection of SCSS vars into template <style> section
   css: {
     loaderOptions: {
