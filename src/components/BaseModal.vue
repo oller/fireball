@@ -4,7 +4,6 @@
       <div class="modal-background" @click="close"></div>
       <div class="modal-content" @click.stop>
         <slot></slot>
-        <!-- Any other Bulma elements you want -->
       </div>
       <button class="modal-close is-large" aria-label="close" @click="close"></button>
     </div>
