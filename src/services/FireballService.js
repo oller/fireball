@@ -46,7 +46,7 @@ const parseResponse = response => {
         : -Number(updatedFireball.lon)
     return updatedFireball
   })
-  // Cached all fireballs for later local date filtering
+  // Cached all fireballs for subsequent local date filtering
   allFireballs = parsedFireballs
   // Return parsed
   return parsedFireballs

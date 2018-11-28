@@ -1,16 +1,19 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 @import './variables.scss'; //Overwrite bulma vars with defined values
 
-@import "~bulma/sass/utilities/_all"; // Bulma vars and mixins etc.
+@import '~bulma/sass/utilities/_all'; // Bulma vars and mixins etc.
 
 @import './overrides.scss'; // Further bulma overrides but remapping existing bulma vars
 
 // Bulma Imports
-@import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/_all";
-@import "~bulma/sass/components/_all";
-@import "~bulma/sass/grid/_all";
-@import "~bulma/sass/layout/_all";
+@import '~bulma/sass/base/_all';
+@import '~bulma/sass/elements/_all';
+@import '~bulma/sass/components/_all';
+@import '~bulma/sass/grid/_all';
+@import '~bulma/sass/layout/_all';
+
+// Nprogress loader bar custom styles
+@import './nprogress.scss';
 
 @import './spacing.scss'; //Spacing helpers
