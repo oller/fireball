@@ -18,11 +18,11 @@ const apiClient = axios.create({
   adapter: cacheAdapterEnhancer(axios.defaults.adapter)
 })
 
-const fetchFireballs = () => {
+export function fetchFireballs() {
   return apiClient.get()
 }
 
-const fetchFireballsForYearRange = yearRange => {
+export function fetchFireballsForYearRange(yearRange) {
   return apiClient.get('', {
     params: {
       'date-min': `${yearRange[0]}-01-01`,
@@ -31,7 +31,7 @@ const fetchFireballsForYearRange = yearRange => {
   })
 }
 
-const parseResponse = response => {
+export function parseResponse(response) {
   // Apply field labels to API response data into workable JSON
   // See formatting at https://ssd-api.jpl.nasa.gov/doc/fireball.html
   const parsedFireballs = response.data.map(fireball => {
@@ -52,7 +52,7 @@ const parseResponse = response => {
   return parsedFireballs
 }
 
-const getFireballsForYearRange = range => {
+export function getFireballsForYearRange(range) {
   const startDate = moment(`01/01/${range[0]}`, 'DD/MM/YYYY')
   const endDate = moment(`31/12/${range[1]}`, 'DD/MM/YYYY')
   return allFireballs.filter(fireball => {
@@ -63,26 +63,17 @@ const getFireballsForYearRange = range => {
   })
 }
 
-const getFireballMetricRange = (parsedResponse, metric) => {
+export function getFireballMetricRange(parsedResponse, metric) {
   return [
     Number(minBy(parsedResponse, metric)[metric]),
     Number(maxBy(parsedResponse, metric)[metric])
   ]
 }
 
-const getYearRange = parsedResponse => {
+export function getYearRange(parsedResponse) {
   let moments = parsedResponse.map(d => moment(d.date))
   return [
     Number(moment.min(moments).format('YYYY')),
     Number(moment.max(moments).format('YYYY'))
   ]
-}
-
-export default {
-  fetchFireballs,
-  fetchFireballsForYearRange,
-  parseResponse,
-  getFireballsForYearRange,
-  getFireballMetricRange,
-  getYearRange
 }

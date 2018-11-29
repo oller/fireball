@@ -29,7 +29,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdPu } from 'd3-scale-chromatic'
 import { rgbStringToArray } from '@/helpers/utils.js'
-import FireballService from '@/services/FireballService'
+import { getFireballMetricRange } from '@/services/FireballService'
 import FireballTooltip from '@/components/FireballTooltip'
 import FireballDrawer from '@/components/FireballDrawer'
 
@@ -180,7 +180,7 @@ export default {
     },
     updateColorScale() {
       const colorScale = interpolateRdPu
-      const metricDomain = FireballService.getFireballMetricRange(
+      const metricDomain = getFireballMetricRange(
         this.fireballs,
         this.metricToPlot
       )

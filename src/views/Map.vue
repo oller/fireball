@@ -6,7 +6,12 @@
 
 <script>
 import EventBus from '@/services/EventBus'
-import FireballService from '@/services/FireballService.js'
+import {
+  fetchFireballs,
+  parseResponse,
+  getYearRange,
+  getFireballsForYearRange
+} from '@/services/FireballService.js'
 import NProgress from 'nprogress'
 import DeckGL from '@/components/DeckGL.vue'
 
@@ -25,10 +30,10 @@ export default {
     fetchFireballs() {
       NProgress.start()
       this.loading = true
-      FireballService.fetchFireballs()
+      fetchFireballs()
         .then(response => {
-          this.fireballs = FireballService.parseResponse(response.data)
-          this.fireballYearRange = FireballService.getYearRange(this.fireballs)
+          this.fireballs = parseResponse(response.data)
+          this.fireballYearRange = getYearRange(this.fireballs)
           this.loading = false
           NProgress.done()
           this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
@@ -38,7 +43,7 @@ export default {
         })
     },
     getDataForDateRange(range) {
-      this.fireballs = FireballService.getFireballsForYearRange(range)
+      this.fireballs = getFireballsForYearRange(range)
     }
   },
   created() {
