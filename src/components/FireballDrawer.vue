@@ -2,12 +2,10 @@
   <div
     class="drawer has-background-black-ter has-text-white is-size-7 p-lg"
     :class="{'is-open': showDrawer}"
-    @animationend="animationEnd"
   >
     <span class="drawer-toggler p-md" @click="showDrawer = !showDrawer">
       <base-icon :icon="showDrawer ? 'info' : 'info_outline'"/>
     </span>
-    <!-- <button class="delete" aria-label="delete" @click="showDrawer = !showDrawer"></button> -->
     <div class="content">
       <div class="m-b-lg">
         <h3 class="has-text-weight-bold has-text-white">What am I Looking at?</h3>
@@ -37,8 +35,10 @@
           </base-modal>
         </portal>
         <p>
-          To get a true sense of the scale of this event, try toggling the radius calculation from
-          logarithmic back to linear
+          To get a true sense of the scale of this event,
+          <a
+            @click="setChartToRadiatedLinear"
+          >set the chart to a linear scale showing energy radiated</a>
         </p>
       </div>
     </div>
@@ -100,14 +100,15 @@ export default {
     }
   },
   methods: {
-    animationEnd() {
-      console.log('anim end')
-    },
     setMetricToPlot(metric) {
       this.$emit('metric-updated', metric)
     },
     setScaleToPlot(scale) {
       this.$emit('scale-updated', scale)
+    },
+    setChartToRadiatedLinear() {
+      this.setMetricToPlot('energy')
+      this.setScaleToPlot('linear')
     }
   }
 }
