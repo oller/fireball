@@ -152,7 +152,6 @@ export default {
             onHover: hoveredObject => {
               this.fireballHovered = hoveredObject
             },
-            onClick: clickedObject => console.log(clickedObject),
             transitions: {
               getColor: 200,
               getRadius: 200
