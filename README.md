@@ -29,12 +29,6 @@ yarn run serve
 yarn run build
 ```
 
-### Compiles production and deploys
-
-```
-yarn run deploy
-```
-
 ### Lints and fixes files
 
 ```
@@ -56,5 +50,6 @@ yarn run test:e2e
 ## Todo
 
 - [ ] Reinit slider on callback not setTimeout
-- [ ] Unit Tests
+- [x] Use Travis CI for deployments
+- [x] Unit Tests
 - [ ] E2E Tests
