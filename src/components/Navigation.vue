@@ -3,16 +3,19 @@
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item" :to="`/`">
-          <img alt="Fireball logo" src="../assets/images/fireball.svg" width="20" height="20">
+          <img
+            alt="Fireball logo"
+            src="../assets/images/fireball.svg"
+            width="20"
+            height="20"
+          />
         </router-link>
         <span
           class="navbar-burger burger has-text-white"
           @click="toggleResponsiveNav"
           :class="{ 'is-active': responsiveNavOpen }"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span> <span></span> <span></span>
         </span>
       </div>
       <div class="navbar-menu" :class="{ 'is-active': responsiveNavOpen }">
@@ -24,9 +27,15 @@
             active-class="is-active"
             exact
             :to="{ name: routes.name }"
-          >{{routes.text}}</router-link>
+            >{{ routes.text }}</router-link
+          >
           <a href="https://github.com/oller/fireball" class="navbar-item">
-            <img src="../assets/images/github.svg" alt="Github Logo" width="20" height="20">
+            <img
+              src="../assets/images/github.svg"
+              alt="Github Logo"
+              width="20"
+              height="20"
+            />
           </a>
         </div>
       </div>
