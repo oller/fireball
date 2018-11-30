@@ -7,7 +7,7 @@ cache:
     - ~/.cache
 script:
   - yarn test:unit
-  - yarn test:e2e
+  - yarn test:e2e --headless
   - yarn build
 deploy:
   provider: pages
