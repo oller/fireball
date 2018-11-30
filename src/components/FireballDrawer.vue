@@ -2,8 +2,13 @@
   <div
     class="drawer has-background-black-ter has-text-white is-size-7 p-lg"
     :class="{ 'is-open': showDrawer }"
+    data-test="drawer"
   >
-    <span class="drawer-toggler p-md" @click="showDrawer = !showDrawer">
+    <span
+      class="drawer-toggler p-md"
+      @click="showDrawer = !showDrawer"
+      data-test="drawer-toggler"
+    >
       <base-icon :icon="showDrawer ? 'info' : 'info_outline'" />
     </span>
     <div class="content">
@@ -22,7 +27,7 @@
           >
           being such an extreme outlier in terms of energy radiated. (That's the
           big fella close to the Russia / Kazakhstan border).
-          <a @click="showModal = true"
+          <a @click="showModal = true" data-test="fireball-modal"
             >Check out a Russian dashcam video of this event</a
           >
         </p>

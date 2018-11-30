@@ -6,6 +6,7 @@ cache:
     - node_modules
 script:
   - yarn test:unit
+  - yarn test:e2e
   - yarn build
 deploy:
   provider: pages
