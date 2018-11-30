@@ -1,6 +1,10 @@
 <template>
   <div>
-    <DeckGL :fireballs="fireballs" :loading="loading" :fireballYearRange="fireballYearRange"/>
+    <DeckGL
+      :fireballs="fireballs"
+      :loading="loading"
+      :fireballYearRange="fireballYearRange"
+    />
   </div>
 </template>
 

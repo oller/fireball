@@ -2,17 +2,21 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
-        <router-link class="navbar-item" :to="`/`">
-          <img alt="Fireball logo" src="../assets/images/fireball.svg" width="20" height="20">
+        <router-link class="navbar-item" :to="`/`" data-test="link-home">
+          <img
+            alt="Fireball logo"
+            src="../assets/images/fireball.svg"
+            width="20"
+            height="20"
+          />
         </router-link>
         <span
           class="navbar-burger burger has-text-white"
           @click="toggleResponsiveNav"
           :class="{ 'is-active': responsiveNavOpen }"
+          data-test="navbar-burger"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span> <span></span> <span></span>
         </span>
       </div>
       <div class="navbar-menu" :class="{ 'is-active': responsiveNavOpen }">
@@ -22,11 +26,22 @@
             class="navbar-item"
             v-bind:key="routes.id"
             active-class="is-active"
+            :data-test="`link-${routes.name}`"
             exact
             :to="{ name: routes.name }"
-          >{{routes.text}}</router-link>
-          <a href="https://github.com/oller/fireball" class="navbar-item">
-            <img src="../assets/images/github.svg" alt="Github Logo" width="20" height="20">
+            >{{ routes.text }}</router-link
+          >
+          <a
+            href="https://github.com/oller/fireball"
+            class="navbar-item"
+            data-test="link-github"
+          >
+            <img
+              src="../assets/images/github.svg"
+              alt="Github Logo"
+              width="20"
+              height="20"
+            />
           </a>
         </div>
       </div>

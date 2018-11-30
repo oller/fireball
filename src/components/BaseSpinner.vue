@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <spinner v-bind="options"/>
-  </div>
+  <div><spinner v-bind="options" /></div>
 </template>
 
 <script>

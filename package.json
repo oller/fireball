@@ -1,11 +1,11 @@
 {
   "name": "fireball",
   "version": "0.1.0",
+  "homepage": "https://oller.github.io/fireball/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "./deploy.sh",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"

@@ -2,7 +2,7 @@
   <div>
     <div class="deck-wrapper">
       <div v-if="loading" class="fill-wrapper spinner-wrapper">
-        <base-spinner :options="spinnerOptions"/>
+        <base-spinner :options="spinnerOptions" />
       </div>
       <fireball-drawer
         :fireballYearRange="fireballYearRange"
@@ -17,7 +17,7 @@
       <div id="map" class="fill-wrapper"></div>
       <canvas id="deck-canvas" class="fill-wrapper"></canvas>
     </div>
-    <fireball-tooltip :fireball="fireballHovered"/>
+    <fireball-tooltip :fireball="fireballHovered" />
   </div>
 </template>
 
@@ -152,7 +152,6 @@ export default {
             onHover: hoveredObject => {
               this.fireballHovered = hoveredObject
             },
-            onClick: clickedObject => console.log(clickedObject),
             transitions: {
               getColor: 200,
               getRadius: 200

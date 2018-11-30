@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <hero title="Everyone loves a good bolide" subtitle="Let's find some"></hero>
-    <router-view/>
+    <hero
+      title="Everyone loves a good bolide"
+      subtitle="Let's find some"
+    ></hero>
+    <router-view />
     <Footer></Footer>
     <portal-target name="modal"></portal-target>
   </div>

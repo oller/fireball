@@ -1,7 +1,7 @@
 <template>
   <button class="button">
-    <base-icon v-if="icon" :icon="icon"/>
-    <slot/>
+    <base-icon v-if="icon" :icon="icon" />
+    <slot />
   </button>
 </template>
 
@@ -16,5 +16,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
