@@ -23,7 +23,7 @@
           >Check out a Russian dashcam video of this event</a>
         </p>
         <portal to="modal">
-          <base-modal v-if="showModal" :show="showModal" @close="showModal = false">
+          <base-modal :show="showModal" @close="showModal = false">
             <iframe
               width="560"
               height="340"

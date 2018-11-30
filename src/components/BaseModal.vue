@@ -1,11 +1,11 @@
 <template>
   <transition name="modal">
-    <div class="modal" :class="{'is-active': show}">
-      <div class="modal-background" @click="close"></div>
+    <div v-if="show" class="modal is-active">
+      <div class="modal-background" @click="onClose"></div>
       <div class="modal-content" @click.stop>
         <slot></slot>
       </div>
-      <button class="modal-close is-large" aria-label="close" @click="close"></button>
+      <button class="modal-close is-large" aria-label="close" @click="onClose"></button>
     </div>
   </transition>
 </template>
@@ -14,14 +14,15 @@
 export default {
   props: ['show'],
   methods: {
-    close: function() {
+    onClose: function() {
       this.$emit('close')
     }
   },
   mounted: function() {
+    // If modal open and ESC hit, close modal
     document.addEventListener('keydown', e => {
       if (this.show && e.keyCode == 27) {
-        this.close()
+        this.onClose()
       }
     })
   }
