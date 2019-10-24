@@ -52,4 +52,4 @@ yarn run test:e2e
 - [ ] Reinit slider on callback not setTimeout
 - [x] Use Travis CI for deployments
 - [x] Unit Tests
-- [ ] E2E Tests
+- [x] E2E Tests
