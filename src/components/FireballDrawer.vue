@@ -56,7 +56,7 @@
     </h4>
     <fireball-slider
       :is-visible="showDrawer"
-      :dateRange="fireballYearRange"
+      :date-range="fireballYearRange"
       class="m-b-xl"
     ></fireball-slider>
     <h4 class="has-text-weight-bold has-text-white m-b-sm">
@@ -69,6 +69,7 @@
           :key="metric.id"
           :class="{ 'is-active': metricToPlot === metric.id }"
           @click="setMetricToPlot(metric.id)"
+          :data-test="`metricToggle-${metric.id}`"
         >
           <a class="has-text-white">
             <base-icon :icon="metric.icon" />
@@ -85,6 +86,7 @@
           :key="scale.id"
           :class="{ 'is-active': scaleToPlot === scale.id }"
           @click="setScaleToPlot(scale.id)"
+          :data-test="`scaleToggle-${scale.id}`"
         >
           <a class="has-text-white">
             <span>{{ scale.label }}</span>
@@ -134,7 +136,7 @@ export default {
 <style lang="scss" scoped>
 .drawer {
   color: white;
-  transition: all 0.5s cubic-bezier(0.87, 0.23, 0.15, 0.99);
+  transition: all 0.5s ease-out;
   transform: translateX(-100%);
   height: 100%;
   width: 300px;
