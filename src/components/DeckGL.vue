@@ -110,7 +110,7 @@ export default {
 
       mapObject = new mapboxgl.Map({
         container: 'map',
-        style: `https://maps.tilehosting.com/styles/${mapTilerMapStyle}/style.json?key=${mapTilerKey}`,
+        style: `https://api.maptiler.com/maps/${mapTilerMapStyle}/style.json?key=${mapTilerKey}`,
         // Note: deck.gl will be in charge of interaction and event handling
         interactive: false,
         center: [INITIAL_VIEW_STATE.longitude, INITIAL_VIEW_STATE.latitude],
