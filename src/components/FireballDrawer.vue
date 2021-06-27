@@ -101,11 +101,11 @@
       </div>
     </div>
     <portal to="drawer-overlay">
-      <div
+      <!-- <div
         v-show="showDrawer"
         @click="showDrawer = !showDrawer"
         class="drawer-overlay"
-      ></div>
+      ></div> -->
     </portal>
   </div>
 </template>
