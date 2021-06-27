@@ -14,7 +14,7 @@ describe('BaseModal', () => {
         show: false
       })
 
-      expect(wrapper.isEmpty()).toBe(true)
+      expect(wrapper.contains('.modal')).toBe(false)
     })
 
     it('renders when show true is passed', () => {
@@ -22,52 +22,59 @@ describe('BaseModal', () => {
         show: true
       })
 
-      expect(wrapper.isEmpty()).toBe(false)
+      expect(wrapper.contains('.modal')).toBe(true)
     })
   })
   describe('Events', () => {
     // Events require a visible modal
-    const wrapper = createComponent(
-      {
-        show: true
-      },
-      {
-        attachToDocument: true // Needed to listen to window and DOM events
-      }
-    )
-    it('calls onClose when ESC key is pressed', () => {
-      const stub = jest.fn()
+    let wrapper
+    let stub
+    const factory = () => {
+      return createComponent(
+        {
+          show: true
+        },
+        {
+          attachToDocument: true // Needed to listen to window and DOM events
+        }
+      )
+    }
+
+    beforeEach(() => {
+      wrapper = factory()
+      stub = jest.spyOn(BaseModal.methods, 'onClose')
+    })
+
+    afterEach(() => {
+      wrapper.destroy()
+    })
+
+    it('calls onClose when ESC key is pressed', async () => {
       wrapper.setMethods({
         onClose: stub
       })
+      await wrapper.trigger('keydown.esc')
+      expect(stub).toBeCalled()
+    })
 
-      wrapper.trigger('keydown.esc')
-
+    it('calls onClose when background is clicked', () => {
+      wrapper.find('.modal-background').trigger('click')
       expect(stub).toBeCalled()
     })
 
     it('calls onClose when close button is clicked', () => {
-      const stub = jest.fn()
-      wrapper.setMethods({
-        onClose: stub
-      })
-
-      wrapper.find('button').trigger('click')
-
+      wrapper.find('.modal-close').trigger('click')
       expect(stub).toBeCalled()
     })
   })
+
   describe('Emits', () => {
     it('emits a close event when onClose method is called', () => {
       const wrapper = createComponent({
         show: true
       })
-      const stub = jest.fn()
-
-      wrapper.vm.$on('close', stub)
       wrapper.vm.onClose()
-
-      expect(stub).toBeCalled()
+      expect(wrapper.emitted().close[0]).toEqual([])
     })
   })
 })
