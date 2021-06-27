@@ -8,7 +8,7 @@
       <ul>
         <li class="m-b-xs">
           <base-icon class="m-r-sm is-size-7" icon="calendar_today" />
-          {{ fireball.object.date | moment }}
+          {{ fireball.object.date | formatDate }}
         </li>
         <li v-if="fireball.object.alt" class="m-b-xs">
           <base-icon class="m-r-sm is-size-7" icon="arrow_upward" />
@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import moment from 'moment'
+import { parseJSON, format } from 'date-fns'
 export default {
   props: {
     fireball: [Object, Boolean] // Deck returns either object on mouseenter or boolean on mouseleave
   },
   filters: {
-    moment(date) {
-      return moment(date).format('MMM Do YYYY, hh:mm')
+    formatDate(date) {
+      return format(parseJSON(date), 'dd/MM/yyyy @ HH:mm')
     },
     formatNumber(number) {
       return Number(number).toLocaleString()

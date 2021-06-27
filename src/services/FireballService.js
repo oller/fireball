@@ -1,5 +1,13 @@
 import axios from 'axios'
-import moment from 'moment'
+import {
+  startOfYear,
+  endOfYear,
+  isWithinInterval,
+  parseJSON,
+  min,
+  max,
+  format
+} from 'date-fns'
 import zipObject from 'lodash/zipObject'
 import minBy from 'lodash/minBy'
 import maxBy from 'lodash/maxBy'
@@ -50,11 +58,11 @@ export function parseResponse(response) {
 }
 
 export function getFireballsForYearRange(range) {
-  const startDate = moment(`01/01/${range[0]}`, 'DD/MM/YYYY')
-  const endDate = moment(`31/12/${range[1]}`, 'DD/MM/YYYY')
+  const startYear = startOfYear(new Date(range[0], 0))
+  const endYear = endOfYear(new Date(range[1], 0))
   return allFireballs.filter(fireball => {
-    const compareDate = moment(fireball.date)
-    if (compareDate.isBetween(startDate, endDate)) {
+    const compareDate = parseJSON(fireball.date)
+    if (isWithinInterval(compareDate, { start: startYear, end: endYear })) {
       return fireball
     }
   })
@@ -68,9 +76,9 @@ export function getFireballMetricRange(parsedResponse, metric) {
 }
 
 export function getYearRange(parsedResponse) {
-  let moments = parsedResponse.map(d => moment(d.date))
+  let items = parsedResponse.map(d => parseJSON(d.date))
   return [
-    Number(moment.min(moments).format('YYYY')),
-    Number(moment.max(moments).format('YYYY'))
+    Number(format(min(items), 'yyyy')),
+    Number(format(max(items), 'yyyy'))
   ]
 }
