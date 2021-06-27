@@ -35,7 +35,7 @@ export default {
         canvas: this.$refs.starfield,
         maxRadius: 4,
         minInterval: 0.1,
-        maxInterval: 8
+        maxInterval: 3
       })
       starfield.start()
     },
@@ -47,6 +47,7 @@ export default {
     this.initStarfield()
   },
   updated() {
+    // Re-init on page change as header size may have changed
     this.initStarfield()
   }
 }
