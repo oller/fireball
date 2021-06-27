@@ -42,6 +42,7 @@ export default {
           this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
         })
         .catch(error => {
+          this.loading = false
           this.$toasted.show(error)
         })
     },
