@@ -9,6 +9,7 @@
     </div>
     <Footer class="footer" />
     <portal-target name="modal"></portal-target>
+    <portal-target name="drawer-overlay"></portal-target>
   </div>
 </template>
 
