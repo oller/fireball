@@ -29,8 +29,8 @@
             :data-test="`link-${routes.name}`"
             exact
             :to="{ name: routes.name }"
-            >{{ routes.text }}</router-link
-          >
+            >{{ routes.text }}
+          </router-link>
           <a
             href="https://github.com/oller/fireball"
             class="navbar-item"
