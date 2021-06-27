@@ -99,14 +99,14 @@ export default {
       const INITIAL_VIEW_STATE = {
         latitude: 0,
         longitude: 0,
-        zoom: 1,
+        zoom: 2,
         bearing: 0,
         pitch: 0
       }
 
       // Set your mapbox token here
       const mapTilerMapStyle = 'darkmatter' // darkmatter || positron
-      const mapTilerKey = 'brJQrAEpE6ajrAylkOyb'
+      const mapTilerKey = 'brJQrAEpE6ajrAylkOyb' // public API key
 
       mapObject = new mapboxgl.Map({
         container: 'map',
