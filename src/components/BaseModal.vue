@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'BaseModal',
   props: ['show'],
   methods: {
     onClose: function() {

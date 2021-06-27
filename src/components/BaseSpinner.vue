@@ -6,6 +6,7 @@
 import Spinner from 'vue-spinner-component/src/Spinner'
 
 export default {
+  name: 'BaseSpinner',
   components: {
     Spinner
   },

@@ -8,6 +8,7 @@
 <script>
 export default {
   props: {
+    name: 'BaseButton',
     icon: {
       type: String,
       default: null

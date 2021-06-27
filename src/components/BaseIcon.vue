@@ -5,6 +5,7 @@
 <script>
 export default {
   props: {
+    name: 'BaseIcon',
     icon: {
       type: String,
       default: 'star'
