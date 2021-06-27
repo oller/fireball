@@ -98,6 +98,13 @@
         </li>
       </ul>
     </div>
+    <portal to="modal">
+      <div
+        v-show="showDrawer"
+        @click="showDrawer = !showDrawer"
+        class="drawer-overlay"
+      ></div>
+    </portal>
   </div>
 </template>
 
@@ -163,5 +170,15 @@ export default {
   z-index: 9999;
   width: $width;
   cursor: pointer;
+}
+
+.drawer-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 </style>
