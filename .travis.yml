@@ -6,6 +6,7 @@ cache:
   directories:
     - ~/.cache
 script:
+  - yarn test:unit
   - yarn test:e2e --headless
   - yarn build
 deploy:
