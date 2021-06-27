@@ -1,6 +1,5 @@
 import axios from 'axios'
 import moment from 'moment'
-import { cacheAdapterEnhancer } from 'axios-extensions'
 import zipObject from 'lodash/zipObject'
 import minBy from 'lodash/minBy'
 import maxBy from 'lodash/maxBy'
@@ -13,8 +12,7 @@ const apiClient = axios.create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
-  },
-  adapter: cacheAdapterEnhancer(axios.defaults.adapter)
+  }
 })
 
 export function fetchFireballs() {
