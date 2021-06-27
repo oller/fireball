@@ -27,13 +27,12 @@ export default {
     return {
       fireballs: [],
       fireballYearRange: [],
-      loading: false
+      loading: true
     }
   },
   methods: {
     fetchFireballs() {
       NProgress.start()
-      this.loading = true
       fetchFireballs()
         .then(response => {
           this.fireballs = parseResponse(response.data)
