@@ -9,7 +9,6 @@ var allFireballs = []
 
 const apiClient = axios.create({
   baseURL: 'https://ssd-api.jpl.nasa.gov/fireball.api?req-loc=true',
-  //   baseURL: 'https://data.nasa.gov/resource/mc52-syum.json',
   withCredentials: false,
   headers: {
     Accept: 'application/json',

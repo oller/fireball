@@ -41,10 +41,6 @@ const register = () => {
       icon: 'check_circle_outline',
       type: 'has-background-success', // This will follow the color defined in bulma
       singleton: true
-      // action: {
-      //   text: 'Close',
-      //   onClick: (e, toast) => toast.goAway(0)
-      // }
     }
   )
 }
