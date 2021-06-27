@@ -136,7 +136,7 @@ export default {
 <style lang="scss" scoped>
 .drawer {
   color: white;
-  transition: all 0.5s ease-out;
+  transition: all 0.2s ease-in-out;
   transform: translateX(-100%);
   height: 100%;
   width: 300px;
