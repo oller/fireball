@@ -33,21 +33,25 @@
         </p>
         <portal to="modal">
           <base-modal :show="showModal" @close="showModal = false">
-            <iframe
-              width="560"
-              height="340"
-              src="https://www.youtube-nocookie.com/embed/fBLjB5qavxY"
-              frameborder="0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen
-            ></iframe>
+            <div class="image is-16by9">
+              <iframe
+                id="ytplayer"
+                type="text/html"
+                width="1024"
+                height="576"
+                class="has-ratio"
+                src="https://www.youtube.com/embed/dpmXyJrs7iU?color=white"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
           </base-modal>
         </portal>
         <p>
           To get a true sense of the scale of this event,
-          <a @click="setChartToRadiatedLinear"
-            >set the chart to a linear scale showing energy radiated</a
-          >
+          <a @click="setChartToRadiatedLinear">
+            Set the chart to a linear scale showing energy radiated
+          </a>
         </p>
       </div>
     </div>
@@ -58,7 +62,7 @@
       :is-visible="showDrawer"
       :date-range="fireballYearRange"
       class="m-b-xl"
-    ></fireball-slider>
+    />
     <h4 class="has-text-weight-bold has-text-white m-b-sm">
       Display energy for
     </h4>

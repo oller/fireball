@@ -10,4 +10,10 @@ $navbar-item-hover-background-color: hsla(0, 0%, 100%, 0.1);
 $navbar-item-color: #fff;
 $navbar-item-active-color: #fff;
 $navbar-background-color: transparent;
-$navbar-height: 4rem; //todo: find a better way to bring through bulma scss vars so they can be refenced in components
+$navbar-height: 4rem;
+
+// Modals
+$modal-content-width: 800px;
+
+// Footer
+$footer-padding: 3rem;
