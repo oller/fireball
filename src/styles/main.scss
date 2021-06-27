@@ -1,5 +1,9 @@
 @charset 'utf-8';
 
+html, body {
+    height: 100%;
+}
+
 @import './variables.scss'; //Overwrite bulma vars with defined values
 
 @import '~bulma/sass/utilities/_all'; // Bulma vars and mixins etc.

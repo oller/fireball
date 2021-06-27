@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <hero
-      title="Everyone loves a good bolide"
-      subtitle="Let's find some"
-    ></hero>
-    <router-view />
-    <Footer></Footer>
+    <div class="content-wrapper">
+      <hero
+        title="Everyone loves a good bolide"
+        subtitle="Let's find some"
+      ></hero>
+      <router-view />
+    </div>
+    <Footer class="footer" />
     <portal-target name="modal"></portal-target>
   </div>
 </template>
@@ -23,3 +25,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-wrapper {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+</style>
