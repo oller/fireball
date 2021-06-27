@@ -153,12 +153,12 @@ export default {
               this.fireballHovered = hoveredObject
             },
             transitions: {
-              getColor: 200,
+              getFillColor: 200,
               getRadius: 200
             },
             updateTriggers: {
               getRadius: [this.metricToPlot, this.scaleToPlot],
-              getColor: [this.metricToPlot, this.scaleToPlot]
+              getFillColor: [this.metricToPlot, this.scaleToPlot]
             }
           })
         ]
