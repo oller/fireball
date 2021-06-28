@@ -24,7 +24,7 @@
 <script>
 import { Deck } from '@deck.gl/core'
 import { ScatterplotLayer } from '@deck.gl/layers'
-import mapboxgl from 'mapbox-gl'
+import { Map as Mapbox } from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdPu } from 'd3-scale-chromatic'
@@ -108,7 +108,7 @@ export default {
       const mapTilerMapStyle = 'darkmatter' // darkmatter || positron
       const mapTilerKey = 'brJQrAEpE6ajrAylkOyb' // public API key
 
-      mapObject = new mapboxgl.Map({
+      mapObject = new Mapbox({
         container: 'map',
         style: `https://api.maptiler.com/maps/${mapTilerMapStyle}/style.json?key=${mapTilerKey}`,
         // Note: deck.gl will be in charge of interaction and event handling
