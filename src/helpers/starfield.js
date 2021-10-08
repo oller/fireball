@@ -28,8 +28,7 @@ class Starfield {
       x: Math.round(Math.random() * this.canvas.width),
       y: Math.round(Math.random() * this.canvas.height),
       r: Math.random() * this.maxRadius,
-      l: 1, // Random alpha between 90 and 100%
-      // l: (Math.random() / 10) * 9, // Random alpha between 90 and 100%
+      l: 1,
       dl: Math.round(Math.random()) === 1 ? 0.01 : -0.01
     }
   }
@@ -40,7 +39,6 @@ class Starfield {
   }
 
   draw(star) {
-    // console.log('star', star);
     this.ctx.beginPath()
     this.ctx.fillStyle = `rgba(255,255,255,${star.l})`
     this.ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI, false)
@@ -67,12 +65,12 @@ class Starfield {
         star.l += star.dl
         star.r -= 0.1
 
-        if (star.r <= 0) this.shootingStar = undefined
+      if (star.r <= 0) {
+        this.shootingStar = undefined
       } else if (this.shootingStarInterval) {
         if (timeStamp - this.lastShootingStar >= this.shootingStarInterval) {
           this.shootingStar = this.star()
           this.lastShootingStar = timeStamp
-          // this.shootingStar.r = 3;
         }
       }
 
