@@ -40,12 +40,12 @@ let deckObject = null
 export default {
   components: {
     FireballTooltip,
-    FireballDrawer
+    FireballDrawer,
   },
   props: {
     fireballs: Array,
     fireballYearRange: Array,
-    loading: Boolean
+    loading: Boolean,
   },
   data() {
     return {
@@ -56,30 +56,30 @@ export default {
         {
           id: 'energy',
           icon: 'brightness_5',
-          label: 'Radiated'
+          label: 'Radiated',
         },
         {
           id: 'impact-e',
           icon: 'whatshot',
-          label: 'Impact'
-        }
+          label: 'Impact',
+        },
       ],
       scaleToPlot: 'log',
       scales: [
         {
           id: 'log',
-          label: 'Logarithmic'
+          label: 'Logarithmic',
         },
         {
           id: 'linear',
-          label: 'Linear'
-        }
+          label: 'Linear',
+        },
       ],
       spinnerOptions: {
         size: 100,
         color: '#333',
-        depth: 5
-      }
+        depth: 5,
+      },
     }
   },
   watch: {
@@ -92,7 +92,7 @@ export default {
     },
     scaleToPlot() {
       this.updateChart()
-    }
+    },
   },
   methods: {
     initDeckGL() {
@@ -101,7 +101,7 @@ export default {
         longitude: 0,
         zoom: 2,
         bearing: 0,
-        pitch: 0
+        pitch: 0,
       }
 
       // Set your mapbox token here
@@ -116,7 +116,7 @@ export default {
         center: [INITIAL_VIEW_STATE.longitude, INITIAL_VIEW_STATE.latitude],
         zoom: INITIAL_VIEW_STATE.zoom,
         bearing: INITIAL_VIEW_STATE.bearing,
-        pitch: INITIAL_VIEW_STATE.pitch
+        pitch: INITIAL_VIEW_STATE.pitch,
       })
 
       deckObject = new Deck({
@@ -130,9 +130,9 @@ export default {
             center: [viewState.longitude, viewState.latitude],
             zoom: viewState.zoom,
             bearing: viewState.bearing,
-            pitch: viewState.pitch
+            pitch: viewState.pitch,
           })
-        }
+        },
       })
     },
     updateDeckLayer() {
@@ -145,23 +145,23 @@ export default {
             highlightColor: [35, 214, 187, 128],
             opacity: 0.3,
             radiusMinPixels: 2,
-            getPosition: d => [d.lon, d.lat],
-            getRadius: d => this.getMetricForScale(d),
-            getColor: d =>
+            getPosition: (d) => [d.lon, d.lat],
+            getRadius: (d) => this.getMetricForScale(d),
+            getColor: (d) =>
               rgbStringToArray(this.colorScale(Number(d[this.metricToPlot]))),
-            onHover: hoveredObject => {
+            onHover: (hoveredObject) => {
               this.fireballHovered = hoveredObject
             },
             transitions: {
               getFillColor: 200,
-              getRadius: 200
+              getRadius: 200,
             },
             updateTriggers: {
               getRadius: [this.metricToPlot, this.scaleToPlot],
-              getFillColor: [this.metricToPlot, this.scaleToPlot]
-            }
-          })
-        ]
+              getFillColor: [this.metricToPlot, this.scaleToPlot],
+            },
+          }),
+        ],
       })
     },
     getMetricForScale(d) {
@@ -194,11 +194,14 @@ export default {
     },
     onScaleUpdated(scale) {
       this.scaleToPlot = scale
-    }
+    },
   },
   mounted() {
     this.initDeckGL()
-  }
+    // Whilst running from snapshot we have data immediately
+    // no need to watch prop change
+    this.updateChart()
+  },
 }
 </script>
 

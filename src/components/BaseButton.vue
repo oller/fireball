@@ -11,9 +11,9 @@ export default {
     name: 'BaseButton',
     icon: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

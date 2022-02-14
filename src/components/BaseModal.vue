@@ -17,17 +17,17 @@ export default {
   name: 'BaseModal',
   props: ['show'],
   methods: {
-    onClose: function() {
+    onClose: function () {
       this.$emit('close')
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     // If modal open and ESC hit, close modal
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', (e) => {
       if (this.show && e.keyCode == 27) {
         this.onClose()
       }
     })
-  }
+  },
 }
 </script>

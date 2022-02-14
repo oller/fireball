@@ -22,8 +22,8 @@ export default {
   name: 'App',
   components: {
     Hero,
-    Footer
-  }
+    Footer,
+  },
 }
 </script>
 

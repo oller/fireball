@@ -23,11 +23,11 @@ import Starfield from '@/helpers/starfield'
 export default {
   name: 'Hero',
   components: {
-    Navigation
+    Navigation,
   },
   props: {
     title: String,
-    subtitle: String
+    subtitle: String,
   },
   methods: {
     initStarfield() {
@@ -35,13 +35,13 @@ export default {
         canvas: this.$refs.starfield,
         maxRadius: 4,
         minInterval: 0.1,
-        maxInterval: 3
+        maxInterval: 3,
       })
       starfield.start()
     },
     onNavDimensionChange() {
       this.initStarfield()
-    }
+    },
   },
   mounted() {
     this.initStarfield()
@@ -49,7 +49,7 @@ export default {
   updated() {
     // Re-init on page change as header size may have changed
     this.initStarfield()
-  }
+  },
 }
 </script>
 

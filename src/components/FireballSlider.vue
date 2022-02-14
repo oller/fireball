@@ -18,11 +18,11 @@ import vueSlider from 'vue-slider-component'
 
 export default {
   components: {
-    vueSlider
+    vueSlider,
   },
   props: {
     dateRange: Array,
-    isVisible: Boolean
+    isVisible: Boolean,
   },
   watch: {
     // We've mapped a prop to a data property, as we shouldn't mutate a prop.
@@ -32,17 +32,17 @@ export default {
     },
     isVisible() {
       setTimeout(
-        function() {
+        function () {
           this.$refs.slider.refresh()
         }.bind(this),
         this.refreshDelay
       )
-    }
+    },
   },
   methods: {
     callback() {
       EventBus.$emit('updated-range', this.selectedDateRange)
-    }
+    },
   },
   data() {
     return {
@@ -52,27 +52,27 @@ export default {
         tooltipDir: 'bottom',
         bgStyle: {
           backgroundColor: '#333',
-          boxShadow: 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)'
+          boxShadow: 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)',
         },
         sliderStyle: {
-          backgroundColor: '#444'
+          backgroundColor: '#444',
         },
         tooltipStyle: [
           {
             backgroundColor: '#444',
-            borderColor: '#444'
+            borderColor: '#444',
           },
           {
             backgroundColor: '#444',
-            borderColor: '#444'
-          }
+            borderColor: '#444',
+          },
         ],
         processStyle: {
-          backgroundColor: '#444'
+          backgroundColor: '#444',
           // backgroundImage: '-webkit-linear-gradient(left, #222, #222)'
-        }
-      }
+        },
+      },
     }
-  }
+  },
 }
 </script>

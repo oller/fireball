@@ -1,4 +1,4 @@
-class Starfield {
+export default class Starfield {
   constructor(config) {
     this.canvas =
       typeof config.canvas === 'string'
@@ -29,7 +29,7 @@ class Starfield {
       y: Math.round(Math.random() * this.canvas.height),
       r: Math.random() * this.maxRadius,
       l: 1,
-      dl: Math.round(Math.random()) === 1 ? 0.01 : -0.01
+      dl: Math.round(Math.random()) === 1 ? 0.01 : -0.01,
     }
   }
 
@@ -51,7 +51,7 @@ class Starfield {
   }
 
   start() {
-    const tick = timeStamp => {
+    const tick = (timeStamp) => {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
       if (this.shootingStar) {
@@ -65,20 +65,19 @@ class Starfield {
         star.l += star.dl
         star.r -= 0.1
 
-      if (star.r <= 0) {
-        this.shootingStar = undefined
-      } else if (this.shootingStarInterval) {
-        if (timeStamp - this.lastShootingStar >= this.shootingStarInterval) {
-          this.shootingStar = this.star()
-          this.lastShootingStar = timeStamp
+        if (star.r <= 0) {
+          this.shootingStar = undefined
+        } else if (this.shootingStarInterval) {
+          if (timeStamp - this.lastShootingStar >= this.shootingStarInterval) {
+            this.shootingStar = this.star()
+            this.lastShootingStar = timeStamp
+          }
         }
+
+        this.frameId = window.requestAnimationFrame(tick)
       }
 
       this.frameId = window.requestAnimationFrame(tick)
     }
-
-    this.frameId = window.requestAnimationFrame(tick)
   }
 }
-
-export default Starfield

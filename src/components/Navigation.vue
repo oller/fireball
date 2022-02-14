@@ -56,7 +56,7 @@ export default {
     toggleResponsiveNav() {
       this.responsiveNavOpen = !this.responsiveNavOpen
       this.$emit('toggle-responsive-nav')
-    }
+    },
   },
   data() {
     return {
@@ -64,14 +64,14 @@ export default {
       links: [
         {
           text: 'Map',
-          name: 'map'
+          name: 'map',
         },
         {
           text: 'About',
-          name: 'about'
-        }
-      ]
+          name: 'about',
+        },
+      ],
     }
-  }
+  },
 }
 </script>

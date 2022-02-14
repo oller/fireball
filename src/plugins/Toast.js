@@ -6,20 +6,20 @@ const register = () => {
   Vue.use(Toasted, {
     position: 'bottom-right',
     duration: 4000,
-    iconPack: 'material'
+    iconPack: 'material',
   })
 
   // register the toast with the custom message
   // Usage: this.$toasted.global.error('Message')
   Vue.toasted.register(
     'error',
-    payload => {
+    (payload) => {
       if (!payload.message) return 'Oops.. Something Went Wrong..'
       return payload.message
     },
     {
       icon: 'error_outline',
-      type: 'has-background-danger' // This will follow the color defined in bulma
+      type: 'has-background-danger', // This will follow the color defined in bulma
       // containerClass: ['toastContainer'],
       // duration: 2000
       // action: {
@@ -33,14 +33,14 @@ const register = () => {
   // Usage: this.$toasted.global.primary('Message')
   Vue.toasted.register(
     'primary',
-    payload => {
+    (payload) => {
       if (!payload.message) return 'Oops.. Something Went Wrong..'
       return payload.message
     },
     {
       icon: 'check_circle_outline',
       type: 'has-background-success', // This will follow the color defined in bulma
-      singleton: true
+      singleton: true,
     }
   )
 }

@@ -8,8 +8,8 @@ export default {
     name: 'BaseIcon',
     icon: {
       type: String,
-      default: 'star'
-    }
-  }
+      default: 'star',
+    },
+  },
 }
 </script>

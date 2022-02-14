@@ -8,7 +8,7 @@
       <base-icon :icon="showDrawer ? 'info' : 'info_outline'" />
     </span>
     <div
-      class="drawer-content has-background-black-ter has-text-white is-size-6 p-lg"
+      class="drawer-content has-background-black-ter has-text-white is-size-7 p-lg"
     >
       <div class="content">
         <div class="m-b-lg">
@@ -115,7 +115,7 @@ import FireballSlider from '@/components/FireballSlider'
 
 export default {
   components: {
-    FireballSlider
+    FireballSlider,
   },
   props: {
     fireballYearRange: Array,
@@ -123,12 +123,12 @@ export default {
     metrics: Array,
     metricToPlot: String,
     scales: Array,
-    scaleToPlot: String
+    scaleToPlot: String,
   },
   data() {
     return {
       showDrawer: false,
-      showModal: false
+      showModal: false,
     }
   },
   methods: {
@@ -141,8 +141,8 @@ export default {
     setChartToRadiatedLinear() {
       this.setMetricToPlot('energy')
       this.setScaleToPlot('linear')
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -31,7 +31,7 @@
 import { parseJSON, format } from 'date-fns'
 export default {
   props: {
-    fireball: [Object, Boolean] // Deck returns either object on mouseenter or boolean on mouseleave
+    fireball: [Object, Boolean], // Deck returns either object on mouseenter or boolean on mouseleave
   },
   filters: {
     formatDate(date) {
@@ -39,8 +39,8 @@ export default {
     },
     formatNumber(number) {
       return Number(number).toLocaleString()
-    }
-  }
+    },
+  },
 }
 </script>
 
