@@ -11,44 +11,33 @@
 <script>
 import EventBus from '@/services/EventBus'
 import {
-  fetchFireballs,
+  fireballData,
   parseResponse,
   getYearRange,
-  getFireballsForYearRange
+  getFireballsForYearRange,
 } from '@/services/FireballService.js'
-import NProgress from 'nprogress'
 import DeckGL from '@/components/DeckGL.vue'
 
 export default {
   components: {
-    DeckGL
+    DeckGL,
   },
   data() {
     return {
       fireballs: [],
       fireballYearRange: [],
-      loading: true
+      loading: true,
     }
   },
   methods: {
     fetchFireballs() {
-      NProgress.start()
-      fetchFireballs()
-        .then(response => {
-          this.fireballs = parseResponse(response.data)
-          this.fireballYearRange = getYearRange(this.fireballs)
-          this.loading = false
-          NProgress.done()
-          this.$toasted.global.primary({ message: 'Data retrieved from NASA' })
-        })
-        .catch(error => {
-          this.loading = false
-          this.$toasted.show(error)
-        })
+      this.fireballs = parseResponse(fireballData)
+      this.fireballYearRange = getYearRange(this.fireballs)
+      this.loading = false
     },
     getDataForDateRange(range) {
       this.fireballs = getFireballsForYearRange(range)
-    }
+    },
   },
   created() {
     this.fetchFireballs()
@@ -56,6 +45,6 @@ export default {
   mounted() {
     // Listen for updateRange event fired from slider
     EventBus.$on('updated-range', this.getDataForDateRange)
-  }
+  },
 }
 </script>
