@@ -4,15 +4,14 @@ const glob = require('glob-all')
 const path = require('path')
 
 module.exports = {
-  // Relative publicPath on prod, Absolute for Dev
-  publicPath: process.env.NODE_ENV === 'production' ? '/fireball/' : '/',
+  publicPath: '/',
   // Auto injection of SCSS vars into template <style> section
   css: {
     loaderOptions: {
       sass: {
-        data: `@import "@/styles/variables.scss";`
-      }
-    }
+        data: `@import "@/styles/variables.scss";`,
+      },
+    },
   },
   // Provide purify with the scope of what to strip styles against
   configureWebpack: {
@@ -22,9 +21,9 @@ module.exports = {
         paths: glob.sync([
           path.join(__dirname, './src/index.html'),
           path.join(__dirname, './**/*.vue'),
-          path.join(__dirname, './src/**/*.js')
-        ])
-      })
-    ]
-  }
+          path.join(__dirname, './src/**/*.js'),
+        ]),
+      }),
+    ],
+  },
 }
