@@ -4,7 +4,8 @@ const glob = require('glob-all')
 const path = require('path')
 
 module.exports = {
-  publicPath: '/',
+  // Relative publicPath on prod, Absolute for Dev
+  publicPath: process.env.NODE_ENV === 'production' ? '/fireball/' : '/',
   // Auto injection of SCSS vars into template <style> section
   css: {
     loaderOptions: {
