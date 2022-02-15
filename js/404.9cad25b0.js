@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["404"],{"8cdb":function(t,e,s){"use strict";s.r(e);var n=function(){var t=this,e=t.$createElement;t._self._c;return t._m(0)},c=[function(){var t=this,e=t.$createElement,s=t._self._c||e;return s("div",{staticClass:"columns is-centered"},[s("div",{staticClass:"column is-half has-text-centered"},[s("h1",{staticClass:"title"},[t._v("Not found m8")])])])}],l=s("2877"),a={},i=Object(l["a"])(a,n,c,!1,null,null,null);e["default"]=i.exports}}]);
+//# sourceMappingURL=404.9cad25b0.js.map
