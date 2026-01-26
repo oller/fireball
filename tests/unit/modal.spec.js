@@ -4,14 +4,14 @@ import BaseModal from '@/components/BaseModal.vue'
 const createComponent = (propsData, options) =>
   shallowMount(BaseModal, {
     propsData,
-    ...options
+    ...options,
   })
 
 describe('BaseModal', () => {
   describe('Renders', () => {
     it('does not render when show false is passed', () => {
       const wrapper = createComponent({
-        show: false
+        show: false,
       })
 
       expect(wrapper.contains('.modal')).toBe(false)
@@ -19,7 +19,7 @@ describe('BaseModal', () => {
 
     it('renders when show true is passed', () => {
       const wrapper = createComponent({
-        show: true
+        show: true,
       })
 
       expect(wrapper.contains('.modal')).toBe(true)
@@ -32,10 +32,10 @@ describe('BaseModal', () => {
     const factory = () => {
       return createComponent(
         {
-          show: true
+          show: true,
         },
         {
-          attachToDocument: true // Needed to listen to window and DOM events
+          attachToDocument: true, // Needed to listen to window and DOM events
         }
       )
     }
@@ -51,7 +51,7 @@ describe('BaseModal', () => {
 
     it('calls onClose when ESC key is pressed', async () => {
       wrapper.setMethods({
-        onClose: stub
+        onClose: stub,
       })
       await wrapper.trigger('keydown.esc')
       expect(stub).toBeCalled()
@@ -71,7 +71,7 @@ describe('BaseModal', () => {
   describe('Emits', () => {
     it('emits a close event when onClose method is called', () => {
       const wrapper = createComponent({
-        show: true
+        show: true,
       })
       wrapper.vm.onClose()
       expect(wrapper.emitted().close[0]).toEqual([])

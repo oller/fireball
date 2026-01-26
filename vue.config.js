@@ -29,4 +29,12 @@ module.exports = {
       }),
     ],
   },
+  devServer: {
+    proxy: {
+      '/fireball.api': {
+        target: 'https://ssd-api.jpl.nasa.gov',
+        changeOrigin: true,
+      },
+    },
+  },
 }

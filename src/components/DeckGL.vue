@@ -183,6 +183,9 @@ export default {
         this.fireballs,
         this.metricToPlot
       )
+      if (metricDomain[0] === metricDomain[1]) {
+        metricDomain[1] = metricDomain[0] + 1 // Avoid zero domain
+      }
       this.colorScale = scaleSequential(colorScale).domain(metricDomain)
     },
     updateChart() {

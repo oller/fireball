@@ -33,7 +33,9 @@ export default {
     isVisible() {
       setTimeout(
         function () {
-          this.$refs.slider.refresh()
+          if (this.$refs.slider) {
+            this.$refs.slider.refresh()
+          }
         }.bind(this),
         this.refreshDelay
       )

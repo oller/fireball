@@ -4,7 +4,7 @@ import FireballDrawer from '@/components/FireballDrawer.vue'
 const createComponent = (propsData, options) =>
   shallowMount(FireballDrawer, {
     propsData,
-    ...options
+    ...options,
   })
 
 const wrapper = createComponent({
@@ -14,25 +14,25 @@ const wrapper = createComponent({
     {
       id: 'energy',
       icon: 'brightness_5',
-      label: 'Radiated'
+      label: 'Radiated',
     },
     {
       id: 'impact-e',
       icon: 'whatshot',
-      label: 'Impact'
-    }
+      label: 'Impact',
+    },
   ],
   scaleToPlot: 'log',
   scales: [
     {
       id: 'log',
-      label: 'Logarithmic'
+      label: 'Logarithmic',
     },
     {
       id: 'linear',
-      label: 'Linear'
-    }
-  ]
+      label: 'Linear',
+    },
+  ],
 })
 
 describe('FireballDrawer', () => {
@@ -40,7 +40,7 @@ describe('FireballDrawer', () => {
     it('calls setMetricToPlot when metric toggle is clicked', () => {
       const stub = jest.fn()
       wrapper.setMethods({
-        setMetricToPlot: stub
+        setMetricToPlot: stub,
       })
 
       wrapper.find('[data-test="metricToggle-energy"]').trigger('click')
@@ -51,7 +51,7 @@ describe('FireballDrawer', () => {
     it('calls setScaleToPlot when metric toggle is clicked', () => {
       const stub = jest.fn()
       wrapper.setMethods({
-        setScaleToPlot: stub
+        setScaleToPlot: stub,
       })
 
       wrapper.find('[data-test="scaleToggle-linear"]').trigger('click')

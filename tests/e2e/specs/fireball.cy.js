@@ -13,7 +13,7 @@ describe('Fireball tests', () => {
     it('shows the modal when the dashcam link clicked', () => {
       cy.get('[data-test=drawer-toggler]').click()
       cy.get('[data-test=fireball-modal]').click({
-        force: true
+        force: true,
       })
       cy.get('[data-test=modal]').should('be.visible')
     })
