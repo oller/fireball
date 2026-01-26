@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "fetch-data": "node ./scripts/fetch-fireball-data.mjs",
-    "prebuild": "npm run fetch-data",
+    "prebuild": "yarn fetch-data",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write ./src",
     "test:unit": "vue-cli-service test:unit",
