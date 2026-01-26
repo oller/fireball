@@ -2,6 +2,7 @@
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const glob = require('glob-all')
 const path = require('path')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = {
   // Relative publicPath on prod, Absolute for Dev
@@ -10,7 +11,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `@import "@/styles/variables.scss";`,
+        additionalData: `@import "@/styles/variables.scss";`,
       },
     },
   },
@@ -18,6 +19,7 @@ module.exports = {
   configureWebpack: {
     // Merged into the final Webpack config
     plugins: [
+      new NodePolyfillPlugin(),
       new PurgecssPlugin({
         paths: glob.sync([
           path.join(__dirname, './src/index.html'),
